@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import numpy
 import math
+import numpy
 
 class puzzle:
     
@@ -9,13 +9,11 @@ class puzzle:
         M=math.sqrt(tamano+1)
         matrix=numpy.zeros((M,M))
         lista=[]
-        c=0
         for n in range (tamano+1):
             lista.append(n)
         for i in range (int (M)):
             for j in range (int (M)):
-                r=numpy.random.randint(tamano+1-c)
-                c=c+1
+                r=numpy.random.randint(len(lista))
                 matrix[i][j]=lista[r]
                 lista.pop(r)
         return matrix
@@ -43,9 +41,10 @@ class puzzle:
                     break
         return res
 #Pruebas Varias
-'''for n in range (100):
-    puzzle.creaEstadoInicial(puzzle,8)'''
-s=numpy.matrix('0.,1.,2.;3.,4.,5.;6.,7.,8.')
+for n in range (100):
+    print(puzzle.creaEstadoInicial(puzzle,8))
+    
+''''s=numpy.matrix('0.,1.,2.;3.,4.,5.;6.,7.,8.')
 
-print(puzzle.esSolucion(puzzle,puzzle.creaEstadoInicial(puzzle, 8),8))
+print(puzzle.esSolucion(puzzle,puzzle.creaEstadoInicial(puzzle, 8),8))'''
 
