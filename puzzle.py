@@ -18,7 +18,7 @@ class puzzle:
             lista.append(n)
         for i in range (self.M):
             for j in range(self.M):
-                self.estadoFinal[i][j] = lista[c]
+                self.estadoFinal[i][j] = int(lista[c])
                 c = c + 1
         
     def creaEstadoInicial(self):
@@ -29,7 +29,7 @@ class puzzle:
             lista.append(n)
         for i in range (int (M)):
             for j in range (int (M)):
-                r = numpy.random.randint(len(lista))
+                r = int(numpy.random.randint(len(lista)))
                 self.matrix[i][j] = lista[r]
                 lista.pop(r)
         
@@ -54,18 +54,45 @@ class puzzle:
             
     
     def expandirNodo(self):
+        mov=[]
+        res=[]
+        pos=self.encontrarHueco()
+        linea=pos[0]
+        col=pos[1]
+        if linea>0:
+            mov.append((linea-1,col))
+        if linea<(self.M-1):
+            mov.append((linea+1,col))
+        if col>0:
+            mov.append((linea,col-1))
+        if col<(self.M-1):
+            mov.append((linea,col+1))
+        print (mov)
+        for n in mov:
+            copia=self.clonaEstado()
+            copia.matrix[n[0]][n[1]],copia.matrix[linea][col]=copia.matrix[linea][col],copia.matrix[n[0]][n[1]]
+            res.append(copia)
+            
+        return res
+    
+
+    def clonaEstado(self):
+        copia=puzzle(self.tamano)
+        copia.matrix=self.matrix
+        return copia
         
-        return 
- 
  
 '''----------------------------------------------------------'''
    
-e=puzzle(15)
+e=puzzle(8)
 e.creaEstadoInicial()
 print(e.matrix)
 print(e.estadoFinal)
 print(e.esSolucion())
 print(e.encontrarHueco())
+hijos=e.expandirNodo()
+for n in hijos:
+    print (n.matrix)
 
 
     
