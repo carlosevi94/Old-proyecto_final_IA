@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import numpy
 import math
+import numpy
 
 class puzzle:
     matrix=""
@@ -21,7 +21,7 @@ class puzzle:
             for j in range(self.M):
                 self.estadoFinal[i][j] = int(lista[c])
                 c = c + 1
-        
+    
     def creaEstadoInicial(self):
         lista = []
         for n in range (self.tamano + 1):
@@ -81,8 +81,7 @@ class puzzle:
             res.append(copia)
             
         return res
-    
-
+   
     def clonaEstado(self):
         copia=puzzle(self.tamano)
         for i in range (self.M):
@@ -111,7 +110,4 @@ print(e.encontrarPos(0,True))
 hijos=e.expandirNodo()
 for n in hijos:
     print (n)'''
-print(e.getHeuristica())
-
-
-    
+print(e.getHeuristica()
