@@ -5,6 +5,7 @@ import math
 class puzzle:
     matrix=""
     estadoFinal=False
+    #M es la raiz cuadrada del tamaño + 1
     M=""
     tamano=0
     
