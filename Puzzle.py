@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import numpy
 import math
 
@@ -8,6 +7,7 @@ class puzzle:
     #M es la raiz cuadrada del tamaño + 1
     M=""
     tamano=0
+    Padre=[]
     
     def __init__(self,tamano):
         self.tamano=tamano
@@ -78,9 +78,10 @@ class puzzle:
             a=n[0]
             b=n[1]
             copia=self.clonaEstado()
+            n.Padre=self
             copia.matrix[a][b],copia.matrix[linea][col]=copia.matrix[linea][col],copia.matrix[a][b]
             res.append(copia)
-            
+        res.sort()
         return res
     
 
@@ -101,18 +102,26 @@ class puzzle:
             ideal=self.encontrarPos(n,False)
             res+=abs(pos[0]-ideal[0])+abs(pos[1]-ideal[1])
         return res
+            
+    def __gt__(self,puzle):
+        return self.getHeuristica() > puzle.getHeuristica()
 '''----------------------------------------------------------'''
    
-e=puzzle(8)
+''''e=puzzle(8)
 e.creaEstadoInicial()
 print(e.matrix)
 print(e.estadoFinal)
-'''print(e.esSolucion())
+print(e.esSolucion())
 print(e.encontrarPos(0,True))
 hijos=e.expandirNodo()
 for n in hijos:
+    print(n.getHeuristica())
+    print (n)
+print("----------------------")
+hijos.sort()
+for n in hijos:
+    print(n.getHeuristica())
     print (n)'''
-print(e.getHeuristica())
 
 
     
