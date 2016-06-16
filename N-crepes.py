@@ -4,7 +4,7 @@ import math
 
 class crepes:
     
-    estadoFinal=False
+    estadoFinal=[]
     crepes=[]
     tamano=0
     
@@ -68,6 +68,8 @@ class crepes:
             auxiliar1=sublista+sublistaRestante
             copia.crepes=auxiliar1
             res.append(copia)
+            res.sort()
+            
         return res
     
 
@@ -82,7 +84,21 @@ class crepes:
         return repr(self.crepes)
     
     def getHeuristica(self):
-        return 0
+        resultado=0
+        
+        for a in range (0,self.tamano-1):
+            euris=0
+            var1=self.crepes[a]
+            var2=self.crepes[a+1]
+            euris=abs(var2-var1)
+            euris=euris-1
+            resultado=resultado+euris
+        
+        return resultado
+    
+    
+    def __gt__(self,crepe):
+        return self.getHeuristica() > crepe.getHeuristica()
 '''----------------------------------------------------------'''
    
 e=crepes(5)
@@ -110,9 +126,23 @@ print("--------------")
 
 print("---------EXPANDIR NODO---------")
 hijos=e.expandirNodo()
+#el n ya es un crepe
 for n in hijos:
     print (n.crepes)
+    print (n.getHeuristica())
 #print(e.getHeuristica())'''
 print("--------------")
 
-    
+
+print("---------Heuristica---------")
+crepeur=crepes(5)
+crepeur.creaEstadoInicial()
+print(crepeur.crepes)
+print(crepeur.getHeuristica())
+
+#print(e.getHeuristica())'''
+print("--------------")
+
+  
+  
+

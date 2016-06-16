@@ -24,6 +24,7 @@ def BusquedaHaz(self,estadoInicial,memoriaMax,haz):
             hijos.sort()
             print(hijos)
     return res
+
 p=puzzle(8)
 p.creaEstadoInicial()
 
