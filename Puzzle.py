@@ -9,7 +9,7 @@ class puzzle:
     tamano=0
     
     ##[]
-    Padre=0
+    Padre=""
     
     def __init__(self,tamano):
         self.tamano=tamano
@@ -75,20 +75,20 @@ class puzzle:
             mov.append((linea,col-1))
         if col<(self.M-1):
             mov.append((linea,col+1))
-        print("Los movimientos son:")
-        print (mov)
+        #print("Los movimientos son:")
+        #print (mov)
         
         for n in mov:
             a=n[0]
             b=n[1]
             copia=self.clonaEstado()
-            
+            copia.Padre=self
             copia.matrix[a][b],copia.matrix[linea][col]=copia.matrix[linea][col],copia.matrix[a][b]
             res.append(copia)
             
         res.sort()
         #self.matrix
-        self.Padre=n
+        #self.Padre=n
         return res
     
 

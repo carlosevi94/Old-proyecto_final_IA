@@ -5,27 +5,25 @@ def BusquedaHaz(self,estadoInicial,memoriaMax,haz):
     res=0
     nodoActual=estadoInicial
     memoria.append(estadoInicial)
+   
     sol=False
     hijos=nodoActual.expandirNodo()
-    while sol==False and len(memoria)<memoriaMax:
-        print ("------------------- ITERACION ----------")
+    while sol==False and len(memoria)<memoriaMax:     
+        if(len(memoria)>1):
+            for n in hijos:
+                p=n.Padre
+                igual=True          
+                for i in range(n.M):
+                    for j in range(n.M):
+                        if(n.matrix[i][j])!=p.Padre.matrix[i][j]:
+                            igual=False
+                            break
+                if(igual==True):
+                    hijos.remove(n)       
         bloque=hijos[:haz]
-        
-        print("Longitud de memoria "+str(len(memoria)))
-        if(len(memoria)!=1):
-            for aux in bloque:
-                aux.pop(nodoActual.Padre) 
-            #print(nodoActual.Padre)
-            #bloque.remove(nodoActual.Padre)           
-            #bloque.rem           
-        
-        
         memoria.append(bloque)
         hijos=[]
         for n in bloque:
-            print(n)
-            
-            print("La heuristica es "+str(n.getHeuristica()))
             if n.esSolucion():
                 sol=True
                 res=len(memoria)
@@ -35,16 +33,11 @@ def BusquedaHaz(self,estadoInicial,memoriaMax,haz):
                 for i in l:
                     hijos.append(i)
             hijos.sort()
-            print("LOS HIJOS SON")
-            
-            for n in hijos:
-                print (n)
-            #print(hijos)
     return res
 
 p=puzzle(8)
 p.creaEstadoInicial()
 
-print(BusquedaHaz(puzzle,p,10,1))
+print(BusquedaHaz(puzzle,p,10,2))
         
         
