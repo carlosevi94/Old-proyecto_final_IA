@@ -7,6 +7,7 @@ class crepes:
     estadoFinal=[]
     crepes=[]
     tamano=0
+    Padre=[]
     
     def __init__(self,tamano):
         self.tamano=tamano 
@@ -59,6 +60,7 @@ class crepes:
     
     def expandirNodo(self):
         res=[]
+        Padre=self
         for k in range(2,self.tamano+1):
             
             copia=self.clonaEstado()
@@ -99,8 +101,9 @@ class crepes:
     
     def __gt__(self,crepe):
         return self.getHeuristica() > crepe.getHeuristica()
-'''----------------------------------------------------------'''
-   
+
+'''------------------METODOS DE PRUEBAS---------------------------------------'''
+'''   
 e=crepes(5)
 e.creaEstadoInicial()
 print("------ESTADO FINAL------")
@@ -130,7 +133,7 @@ hijos=e.expandirNodo()
 for n in hijos:
     print (n.crepes)
     print (n.getHeuristica())
-#print(e.getHeuristica())'''
+#print(e.getHeuristica())
 print("--------------")
 
 
@@ -140,9 +143,9 @@ crepeur.creaEstadoInicial()
 print(crepeur.crepes)
 print(crepeur.getHeuristica())
 
-#print(e.getHeuristica())'''
+#print(e.getHeuristica())
 print("--------------")
 
   
-  
+'''
 

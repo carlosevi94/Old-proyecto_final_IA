@@ -1,4 +1,5 @@
 from Puzzle import puzzle
+from crepes import crepes
 
 def BusquedaHaz(self,estadoInicial,memoriaMax,haz):
     memoria=[]
@@ -35,9 +36,12 @@ def BusquedaHaz(self,estadoInicial,memoriaMax,haz):
             hijos.sort()
     return res
 
-p=puzzle(8)
-p.creaEstadoInicial()
 
-print(BusquedaHaz(puzzle,p,10,2))
+#p=puzzle(8)
+#p.creaEstadoInicial()
+#print(BusquedaHaz(puzzle,p,10,2))
         
+c=crepes(5)
+c.creaEstadoInicial()      
+print(BusquedaHaz(crepes,c,10,2)) 
         

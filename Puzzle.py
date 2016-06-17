@@ -129,6 +129,3 @@ hijos.sort()
 for n in hijos:
     print(n.getHeuristica())
     print (n)'''
-
-
-    
